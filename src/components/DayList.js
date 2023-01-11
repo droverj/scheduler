@@ -2,7 +2,7 @@ import React from "react";
 
 import DayListItem from './DayListItem';
 
-export default function DayList(props) {
+export default function DayList (props) {
   const items = props.days;
 
   return (
