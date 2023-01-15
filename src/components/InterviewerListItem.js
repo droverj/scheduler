@@ -9,14 +9,12 @@ export default function InterviewerListItem(props) {
     "--selected": props.selected,
   });
 
-  const interviewersItemClass = classNamesObject.replace(" ", "");
+  const interviewerClass = classNamesObject.replace(" ", "");
 
   return (
-    <li className={interviewersItemClass}>
+    <li className={interviewerClass} onClick={props.setInterviewer}>
       <img
         className="interviewers__item-image"
-        onClick={() => props.setInterviewer(props.id)}
-        key={props.id}
         src={props.avatar}
         alt={props.name}
       />
