@@ -17,6 +17,7 @@ import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
+import Form from "components/Appointment/Form";
 
 storiesOf("Button", module)
   .addParameters({
@@ -116,26 +117,26 @@ storiesOf("Button", module)
       ];
       
       storiesOf("InterviewerList", module)
-        .addParameters({
-          backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
-        })
-        .add("Initial", () => (
-          <InterviewerList
-            interviewers={interviewers}
-          />
-        ))
-        .add("Selected", () => (
-          <InterviewerList
-            interviewers={interviewers}
-            value={3}
-          />
-        ))
-        .add("Clickable", () => (
-          <InterviewerList
-            interviewers={interviewers}
-            onChange={action("setInterviewer")}
-          />
-        ));
+      .addParameters({
+        backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
+      })
+      .add("Initial", () => (
+        <InterviewerList
+          interviewers={interviewers}
+        />
+      ))
+      .add("Selected", () => (
+        <InterviewerList
+          interviewers={interviewers}
+          value={3}
+        />
+      ))
+      .add("Clickable", () => (
+        <InterviewerList
+          interviewers={interviewers}
+          onChange={action("setInterviewer")}
+        />
+      ));
 
         storiesOf("Appointment", module)
         .addParameters({
@@ -165,5 +166,21 @@ storiesOf("Button", module)
           <Error
           message="Could not delete appointment."
           onClose={action("onClose")}
+           />
+          ))
+        .add("Edit", () => (
+          <Form
+          student="Jodie Drover"
+          interviewer={0}
+          interviewers={interviewers}
+          onSave={action("onSave")}
+          onCancel={action("onCancel")}
+           />
+          ))
+          .add("Create", () => (
+          <Form
+          interviewers={interviewers}
+          onSave={action("onSave")}
+          onCancel={action("onCancel")}
            />
           ))
