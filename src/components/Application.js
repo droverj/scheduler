@@ -48,6 +48,13 @@ export default function Application(props) {
   const [day, setDay] = useState("Monday");
   const [days, setDays] = useState([]);
 
+  useEffect(() => {
+    axios.get("/api/days").then((response) => {
+    console.log(response.data);
+    setDays([...response.data])
+  })
+}, []);
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -81,13 +88,3 @@ export default function Application(props) {
     </main>
   );
 }
-
-
-// {interviewers.map(interviewer => <InterviewerListItem
-//   key={interviewer.id}
-//   name={interviewer.name}
-//   avatar={interviewer.avatar}
-//   selected={interviewer.id === props.value}
-//   setInterviewer={() => props.onChange(interviewer.id)}
-// />
-// )}
