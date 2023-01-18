@@ -2,13 +2,9 @@
 export function getAppointmentsForDay(state, day) {
   let result = [];
 
-  if (!state.days.length) {
-    return result;
-  }
-
   const appointments = state.days.filter(appointment => appointment.name === day)
-  
-  if (!appointments.length) {
+
+  if (!appointments.length || !state.days.length) {
     return result;
   }
 
