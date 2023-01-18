@@ -12,12 +12,18 @@ export default function Application() {
     appointments: {}
   });
 
+  const dailyAppointments = [];
+
   const setDay = day => setState({ ...state, day });
   const setDays = days => setState(prev => ({ ...prev, days }));;
 
   useEffect(() => {
-    axios.get("/api/days").then((response) => {
-    setDays([...response.data])
+    Promise.all([
+      axios.get('api/days'),
+      axios.get('api/appointments'),
+      axios.get('api/interviewers')
+    ]).then((all) => {
+      console.log(all);
   })
 }, []);
 
@@ -44,7 +50,7 @@ export default function Application() {
         />
       </section>
       <section className="schedule">
-        {Object.values(state.appointments).map(appointment => <Appointment
+        {dailyAppointments.map(appointment => <Appointment
           key={appointment.id}
           {...appointment}
         />
