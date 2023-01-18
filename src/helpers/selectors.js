@@ -1,4 +1,4 @@
-//... returns an array of appointments for that day
+// returns an array of appointments for that day
 export function getAppointmentsForDay(state, day) {
   let result = [];
 
@@ -21,19 +21,19 @@ export function getAppointmentsForDay(state, day) {
   return result;
 }
 
-// The function should return a new object containing the interview
-// data when we pass it an object that contains the interviewer
-function getInterview(state, interview) {
+// returns a new object containing the interview data when passed an object that contains the interviewer
+export function getInterview(state, interview) {
+  if (interview === null) {
+    return interview
+  }
 
+  const interviewerId = interview.interviewer;
+  const result = {};
+  result["student"] = interview.student;
+  result["interviewer"] = {};
+  result["interviewer"]["id"] = interviewerId;
+  result["interviewer"]["name"] =  state.interviewers[interviewerId].name;
+  result["interviewer"]["avatar"] =  state.interviewers[interviewerId].avatar;
+
+  return result;
 }
-
-// expected output: 
-// {  
-//   "student": "Lydia Miller-Jones",
-//   "interviewer": {  
-//     "id": 1,
-//     "name": "Sylvia Palmer",
-//     "avatar": "https://i.imgur.com/LpaY82x.png"
-//   }
-// }
-
