@@ -20,3 +20,20 @@ export function getAppointmentsForDay(state, day) {
   })
   return result;
 }
+
+// The function should return a new object containing the interview
+// data when we pass it an object that contains the interviewer
+function getInterview(state, interview) {
+
+}
+
+// expected output: 
+// {  
+//   "student": "Lydia Miller-Jones",
+//   "interviewer": {  
+//     "id": 1,
+//     "name": "Sylvia Palmer",
+//     "avatar": "https://i.imgur.com/LpaY82x.png"
+//   }
+// }
+
