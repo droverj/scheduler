@@ -44,7 +44,7 @@ const appointments = {
   }
 };
 
-export default function Application(props) {
+export default function Application() {
   const [day, setDay] = useState("Monday");
   const [days, setDays] = useState([]);
 
