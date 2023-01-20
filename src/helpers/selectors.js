@@ -8,11 +8,11 @@ export function getAppointmentsForDay(state, day) {
     return result;
   }
 
-  const appointmentIds = appointments[0].appointments;
-  const apps = Object.values(state.appointments);
+  const interviewerIds = appointments[0].appointments;
+  const interviewers = Object.values(state.appointments);
 
-  result = appointmentIds.map(i => {
-    for (const id of apps) {
+  result = interviewerIds.map(i => {
+    for (const id of interviewers) {
       if (i === id.id) {
         return id;
       }
@@ -23,17 +23,17 @@ export function getAppointmentsForDay(state, day) {
 
 // returns a new object containing the interview data when passed an object that contains the interviewer
 export function getInterview(state, interview) {
+  const result = {};
   if (interview === null) {
     return interview
   }
 
-  const interviewerId = interview.interviewer;
-  const result = {};
+  const interviewerId = interview.interviewer
   result["student"] = interview.student;
   result["interviewer"] = {};
   result["interviewer"]["id"] = interviewerId;
-  result["interviewer"]["name"] =  state.interviewers[interviewerId].name;
-  result["interviewer"]["avatar"] =  state.interviewers[interviewerId].avatar;
+  result["interviewer"]["name"] = state.interviewers[interviewerId].name;
+  result["interviewer"]["avatar"] = state.interviewers[interviewerId].avatar;
 
   return result;
 }
@@ -48,11 +48,11 @@ export function getInterviewersForDay(state, day) {
     return result;
   }
 
-  const appointmentIds = appointments[0].appointments;
-  const apps = Object.values(state.appointments);
+  const interviewerIds = appointments[0].interviewers;
+  const interviewers = Object.values(state.interviewers);
 
-  result = appointmentIds.map(i => {
-    for (const id of apps) {
+  result = interviewerIds.map(i => {
+    for (const id of interviewers) {
       if (i === id.id) {
         return id;
       }
