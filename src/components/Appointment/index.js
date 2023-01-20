@@ -5,7 +5,7 @@ import Header from './Header';
 import Show from './Show';
 import Empty from './Empty';
 import Form from './Form';
-import { useVisualMode } from 'hooks/useVisualMode'
+import useVisualMode from 'hooks/useVisualMode'
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -27,7 +27,7 @@ export default function Appointment(props) {
           interviewer={props.interview.interviewer}
         />
       )}
-      {mode === CREATE && <Form interviewers={[]} onCancel={() => back()} />}
+      {mode === CREATE && <Form interviewers={props.interviewers} onCancel={() => back()} />}
     </article>
   );
 }

@@ -5,7 +5,7 @@ import "components/Application.scss";
 import DayList from './DayList';
 import Appointment from '../components/Appointment'
 import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "helpers/selectors";
-import { useVisualMode } from "hooks/useVisualMode";
+// import useVisualMode from "hooks/useVisualMode";
 
 export default function Application() {
   const [state, setState] = useState({
@@ -15,20 +15,20 @@ export default function Application() {
   });
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-  const dailyInterviewers = getInterviewersForDay(state, state.day);
-
+  
   const setDay = day => setState({ ...state, day });
-  const setDays = days => setState(prev => ({ ...prev, days }));
-  // const getInterview = appointments => setState(prev -> ({ ...prev, appointments }));
-
+  // const setDays = days => setState(prev => ({ ...prev, days }));
+  
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
+    const interviewers = getInterviewersForDay(state, state.day);
     return (
       <Appointment
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        interviewers={interviewers}
       />
     );
   });
@@ -67,7 +67,7 @@ export default function Application() {
       </section>
       <section className="schedule">
         {schedule}
-        <Appointment interviewers={dailyInterviewers} key="last" time="5pm" />
+        <Appointment key="last" time="5pm" />
       </section>
     </main>
   );
