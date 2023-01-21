@@ -29,6 +29,7 @@ export default function Application() {
       ...state.appointments,
       [id]: appointment
     };
+    setState({...state, appointments});
   }
   
   const schedule = dailyAppointments.map((appointment) => {
