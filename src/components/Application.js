@@ -20,7 +20,7 @@ export default function Application() {
   // const setDays = days => setState(prev => ({ ...prev, days }));
 
   function bookInterview(id, interview) {
-    console.log(id, interview);
+    // console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -29,7 +29,8 @@ export default function Application() {
       ...state.appointments,
       [id]: appointment
     };
-    setState({...state, appointments});
+
+    axios.put(`/api/appointments/${id}`).then(setState({...state, appointments}))
   }
   
   const schedule = dailyAppointments.map((appointment) => {

@@ -9,30 +9,33 @@ export function getAppointmentsForDay(state, day) {
   }
 
   const interviewerIds = appointments[0].appointments;
-  const interviewers = Object.values(state.appointments);
+  const appointment = Object.values(state.appointments);
 
- return result = interviewerIds.map(i => {
-    for (const id of interviewers) {
+ result = interviewerIds.map(i => {
+    for (const id of appointment) {
       if (i === id.id) {
         return id;
       }
     }
   })
+
+  return result;
 }
 
 // returns a new object containing the interview data when passed an object that contains the interviewer
 export function getInterview(state, interview) {
   const result = {};
+  
   if (interview === null) {
-    return interview
+    return interview;
   }
 
   const interviewerId = interview.interviewer
   result["student"] = interview.student;
   result["interviewer"] = {};
-  result["interviewer"]["id"] = interviewerId;
-  result["interviewer"]["name"] = state.interviewers[interviewerId].name;
-  result["interviewer"]["avatar"] = state.interviewers[interviewerId].avatar;
+  result.interviewer["id"] = interviewerId;
+  result.interviewer["name"] = state.interviewers[interviewerId].name;
+  result.interviewer["avatar"] = state.interviewers[interviewerId].avatar;
 
   return result;
 }
@@ -50,11 +53,12 @@ export function getInterviewersForDay(state, day) {
   const interviewerIds = appointments[0].interviewers;
   const interviewers = Object.values(state.interviewers);
 
- return result = interviewerIds.map(i => {
+ result = interviewerIds.map(i => {
     for (const id of interviewers) {
       if (i === id.id) {
         return id;
       }
     }
   })
+  return result;
 }
