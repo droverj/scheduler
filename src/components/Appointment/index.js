@@ -16,6 +16,9 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
+  const id = props.id;
+  const interview = props.interview;
+
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -23,8 +26,6 @@ export default function Appointment(props) {
     };
     console.log(props.bookInterview(props.id, interview))
   }
-  const id = props.id;
-  const interview = props.interview;
 
   return (
     <article className="appointment">

@@ -21,6 +21,10 @@ export default function Application() {
 
   function bookInterview(id, interview) {
     console.log(id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
   }
   
   const schedule = dailyAppointments.map((appointment) => {
