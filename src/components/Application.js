@@ -5,7 +5,7 @@ import "components/Application.scss";
 import DayList from './DayList';
 import Appointment from '../components/Appointment'
 import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "helpers/selectors";
-// import useVisualMode from "hooks/useVisualMode";
+// import { useVisualMode } from "hooks/useVisualMode";
 
 export default function Application() {
   const [state, setState] = useState({
@@ -20,7 +20,7 @@ export default function Application() {
   // const setDays = days => setState(prev => ({ ...prev, days }));
 
   function bookInterview(id, interview) {
-    // console.log(id, interview);
+    console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -30,9 +30,28 @@ export default function Application() {
       [id]: appointment
     };
 
-    axios.put(`/api/appointments/${id}`).then(setState({...state, appointments}))
+    setState({...state, appointments})
+
+    axios.put(`/api/appointments/${id}`, {interview})
+      .then(response => {
+        this.setState({...state, appointments})
+  })
+      .catch(error => {
+        // this.setState({ errorMessage: error.message });
+        console.error('There was an error!', error);
+    });
   }
   
+  // function updatePost() {
+  //   axios
+  //     .put(`${baseURL}/1`, {
+  //       title: "Hello World!",
+  //       body: "This is an updated post."
+  //     })
+  //     .then((response) => {
+  //       setPost(response.data);
+  //     });
+
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day);
