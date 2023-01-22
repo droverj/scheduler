@@ -46,8 +46,10 @@ export default function Application() {
         console.error('There was an error!', error);
     });
   }
-  
 
+  function cancelInterview(id) {
+    console.log(id);
+  }
 
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
@@ -60,6 +62,7 @@ export default function Application() {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
