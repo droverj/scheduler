@@ -32,7 +32,6 @@ export default function Appointment(props) {
   }
 
   function onCancel() {
-    console.log("onCancel was clicked in Appointment")
     transition(SHOW);
   }
 
