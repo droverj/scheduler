@@ -57,7 +57,8 @@ export default function Application() {
     setState({...state, appointments})
 
     axios.delete(`/api/appointments/${id}`)
-      .then(response => {setState({...state, appointments})
+      .then(response =>
+        {setState({...state, appointments})
   })
       .catch(error => {
         console.error('There was an error!', error);
