@@ -14,6 +14,11 @@ export default function Application() {
     appointments: {}
   });
 
+  // function resetDatabase() {
+  //   axios.get("/api/debug/reset").then(res => {console.log(res)})
+  // }
+  // resetDatabase();
+
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   
   const setDay = day => setState({ ...state, day });
@@ -42,15 +47,7 @@ export default function Application() {
     });
   }
   
-  // function updatePost() {
-  //   axios
-  //     .put(`${baseURL}/1`, {
-  //       title: "Hello World!",
-  //       body: "This is an updated post."
-  //     })
-  //     .then((response) => {
-  //       setPost(response.data);
-  //     });
+
 
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
