@@ -14,7 +14,7 @@ const SHOW = "SHOW";
 const CREATE = "CREATE";
 const CONFIRM = "CONFIRM"
 // const STATUS = "STATUS";
-// const FORM = "FORM";
+const FORM = "FORM";
 
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
@@ -32,11 +32,12 @@ export default function Appointment(props) {
   }
 
   function onCancel() {
+    console.log("onCancel was clicked in Appointment")
     transition(SHOW);
   }
 
   function onConfirm() {
-    // transition(STATUS);
+    props.cancelInterview(props.id)
     transition(EMPTY);
   }
 

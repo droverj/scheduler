@@ -38,8 +38,7 @@ export default function Application() {
     setState({...state, appointments})
 
     axios.put(`/api/appointments/${id}`, {interview})
-      .then(response => {
-        this.setState({...state, appointments})
+      .then(response => {setState({...state, appointments})
   })
       .catch(error => {
         // this.setState({ errorMessage: error.message });
@@ -49,6 +48,27 @@ export default function Application() {
 
   function cancelInterview(id) {
     console.log(id);
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    console.log(appointments)
+
+    setState({...state, appointments})
+
+    axios.delete(`/api/appointments/${id}`)
+      .then(response => {setState({...state, appointments})
+  })
+      .catch(error => {
+        // this.setState({ errorMessage: error.message });
+        console.error('There was an error!', error);
+    });
   }
 
   const schedule = dailyAppointments.map((appointment) => {
