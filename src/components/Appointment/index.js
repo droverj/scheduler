@@ -30,12 +30,17 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
+
+    if (!interviewer || !name) {
+      return transition(ERROR_SAVE, true);
+    }
+
     transition(SAVING);
 
     props
-    .bookInterview(props.id, interview)
-    .then(() => transition(SHOW))
-    .catch(error => transition(ERROR_SAVE, true));
+      .bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch(error => transition(ERROR_SAVE, true));
   }
 
   function onCancel() {
@@ -45,9 +50,9 @@ export default function Appointment(props) {
   function onConfirm() {
     transition(DELETING, true);
     props
-    .cancelInterview(props.id)
-    .then(() => transition(EMPTY))
-    .catch(error => transition(ERROR_DELETE, true));
+      .cancelInterview(props.id)
+      .then(() => transition(EMPTY))
+      .catch(error => transition(ERROR_DELETE, true));
   }
 
   function onEdit() {
