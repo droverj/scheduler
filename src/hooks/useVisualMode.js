@@ -9,7 +9,7 @@ export default function useVisualMode(initial) {
     setMode(mode);
 
     if (replace === true) {
-      setHistory(mode);
+      setHistory(prev => ([...prev, mode]));
     }
   }
 

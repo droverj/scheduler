@@ -39,7 +39,7 @@ export default function Application() {
       .then(response => {setState({...state, appointments})
   })
       .catch(error => {
-        console.error('There was an error!', error);
+        console.log('There was an error!', error);
     });
   }
 
@@ -61,7 +61,7 @@ export default function Application() {
         {setState({...state, appointments})
   })
       .catch(error => {
-        console.error('There was an error!', error);
+        console.log('There was an error!', error);
     });
   }
 
