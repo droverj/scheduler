@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
-import { getAppointmentsForDay } from "helpers/selectors";
+// import { getAppointmentsForDay } from "helpers/selectors";
 
 export default function useControlledInput(initial) {
   const [state, setState] = useState({
@@ -22,43 +22,17 @@ export default function useControlledInput(initial) {
     })
   }, []);
 
-//  const id = 1
-  // function updateSpots(id) {
-  //   let count = 0;
-  //   const result = getAppointmentsForDay(state, state.day);
-  //   result.forEach(id => {
-  //     if (id.interview === null) {
-  //       count += 1;
-  //     }
-  //   })
 
-  //   state.days.forEach(id => {
-  //     if (id.name === state.day) {
-  //       id.spots = count;
-  //     }
-  //   })
-  // }
-//  const id = 0;
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+
   function updateSpots(id) {
-    // console.log(state.days[id])
-  //  id = state.day;
-    let count = 0;
-    const result = getAppointmentsForDay(state, state.day);
-
-    result.forEach(id => {
-      if (id.interview === null) {
-        count += 1;
-      }
-    })
-    // console.log(count);
-
-    let obj = state.days[id].spots
-    console.log(obj)
-    obj = count;
 
   }
 
-  // updateSpots(id);
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
   function bookInterview(id, interview) {
     const appointment = {
@@ -69,10 +43,10 @@ export default function useControlledInput(initial) {
       ...state.appointments,
       [id]: appointment
     };
+
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(response => {
-        updateSpots(id);
-        setState({ ...state, appointments })
+          setState({ ...state, appointments})
       })
       .catch(error => {
         console.log('There was an error!', error);
@@ -91,8 +65,7 @@ export default function useControlledInput(initial) {
     };
 
     return axios.delete(`/api/appointments/${id}`)
-      .then(response => {
-        updateSpots(id);
+    .then(response => {
         setState({ ...state, appointments })
       })
       .catch(error => {
