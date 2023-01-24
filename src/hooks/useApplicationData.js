@@ -22,27 +22,45 @@ export default function useControlledInput(initial) {
     })
   }, []);
 
+//  const id = 1
+  // function updateSpots(id) {
+  //   let count = 0;
+  //   const result = getAppointmentsForDay(state, state.day);
+  //   result.forEach(id => {
+  //     if (id.interview === null) {
+  //       count += 1;
+  //     }
+  //   })
 
-  function updateSpots() {
+  //   state.days.forEach(id => {
+  //     if (id.name === state.day) {
+  //       id.spots = count;
+  //     }
+  //   })
+  // }
+//  const id = 0;
+  function updateSpots(id) {
+    // console.log(state.days[id])
+  //  id = state.day;
     let count = 0;
     const result = getAppointmentsForDay(state, state.day);
+
     result.forEach(id => {
       if (id.interview === null) {
         count += 1;
       }
     })
+    // console.log(count);
 
-    state.days.forEach(id => {
-      if (id.name === state.day) {
-        id.spots = count;
-      }
-    })
+    let obj = state.days[id].spots
+    console.log(obj)
+    obj = count;
+
   }
 
-  // updateSpots();
+  // updateSpots(id);
 
   function bookInterview(id, interview) {
-    console.log("book interview called")
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -53,6 +71,7 @@ export default function useControlledInput(initial) {
     };
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(response => {
+        updateSpots(id);
         setState({ ...state, appointments })
       })
       .catch(error => {
@@ -73,6 +92,7 @@ export default function useControlledInput(initial) {
 
     return axios.delete(`/api/appointments/${id}`)
       .then(response => {
+        updateSpots(id);
         setState({ ...state, appointments })
       })
       .catch(error => {
