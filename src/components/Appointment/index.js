@@ -31,9 +31,9 @@ export default function Appointment(props) {
       interviewer
     };
 
-    if (!interviewer || !name) {
-      return transition(ERROR_SAVE, true);
-    }
+    // if (!interviewer || !name) {
+    //   return transition(ERROR_SAVE, true);
+    // }
 
     transition(SAVING);
 
