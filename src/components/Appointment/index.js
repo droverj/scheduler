@@ -39,20 +39,12 @@ export default function Appointment(props) {
       .catch(error => transition(ERROR_SAVE, true));
   }
 
-  function onCancel() {
-    transition(SHOW);
-  }
-
   function onConfirm() {
     transition(DELETING, true);
     props
       .cancelInterview(props.id)
       .then(() => transition(EMPTY))
       .catch(error => transition(ERROR_DELETE, true));
-  }
-
-  function onEdit() {
-    transition(EDIT);
   }
 
   return (
@@ -64,11 +56,11 @@ export default function Appointment(props) {
           student={props.interview.student}
           interviewer={props.interview.interviewer}
           onDelete={e => transition(CONFIRM)}
-          onEdit={onEdit}
+          onEdit={e => transition(EDIT)}
         />
       )}
       {mode === CREATE && <Form onSave={save} id={props.id} interview={props.interview} interviewers={props.interviewers} onCancel={() => back()} />}
-      {mode === CONFIRM && <Confirm onCancel={onCancel} onConfirm={onConfirm} message={"Are you sure you want to delete?"} />}
+      {mode === CONFIRM && <Confirm onCancel={e => transition(SHOW)} onConfirm={onConfirm} message={"Are you sure you want to delete?"} />}
       {mode === SAVING && <Status message={"Saving"} />}
       {mode === DELETING && <Status message={"Deleting"} />}
       {mode === EDIT && <Form student={props.interview.student} interviewer={props.interview.interviewer.id} onSave={save} id={props.id} interview={props.interview} interviewers={props.interviewers} onCancel={() => back()} />}
