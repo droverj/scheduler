@@ -21,18 +21,48 @@ export default function useControlledInput(initial) {
   }, []);
 
 
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////
 
 
-  function updateSpots(id) {
+  async function updateSpots(reduce = true) {
 
+    let currentDay = state.days.filter(day => {
+      if (day.name === state.day) {
+        return day;
+      }
+    })
+
+    const currentDayId = currentDay[0].id;
+
+    let spots = state.days[currentDayId].spots
+
+    if (!reduce) {
+      spots += 1;
+    } else {
+      spots -= 1;
+    }
+
+    const dayArrIndex = currentDayId - 1;
+
+    const day = {
+      ...state.days[dayArrIndex],
+      spots: spots
+    };
+    console.log(day)
+
+    const days = {
+      ...state.days,
+      [dayArrIndex]: day
+    };
+
+    return days;
   }
 
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////
 
-  function bookInterview(id, interview) {
+  async function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -42,17 +72,17 @@ export default function useControlledInput(initial) {
       [id]: appointment
     };
 
-    return axios.put(`/api/appointments/${id}`, { interview })
-      .then(response => {
-          setState({ ...state, appointments})
-      })
-      .catch(error => {
-        console.log('There was an error!', error);
-        return error;
-      });
+    try {
+      const response = await axios.put(`/api/appointments/${id}`, { interview });
+      setState({ ...state, appointments });
+      // updateSpots()
+    } catch (error) {
+      console.log('There was an error!', error);
+      return error;
+    }
   }
 
-  function cancelInterview(id) {
+  async function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
       interview: null
@@ -62,15 +92,15 @@ export default function useControlledInput(initial) {
       [id]: appointment
     };
 
-    return axios.delete(`/api/appointments/${id}`)
-    .then(response => {
-        setState({ ...state, appointments })
-      })
-      .catch(error => {
-        console.log('There was an error!', error);
-        return error;
-      });
+    try {
+      const response = await axios.delete(`/api/appointments/${id}`);
+      setState({ ...state, appointments });
+      // updateSpots()
+    } catch (error) {
+      console.log('There was an error!', error);
+      return error;
+    }
   }
 
-  return { state, setDay, bookInterview, cancelInterview }
+  return { state, setDay, bookInterview, cancelInterview, updateSpots }
 }
