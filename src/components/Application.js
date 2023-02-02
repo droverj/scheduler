@@ -1,5 +1,4 @@
 import React from "react";
-// import axios from "axios";
 
 import "components/Application.scss";
 import DayList from './DayList';
@@ -14,11 +13,6 @@ export default function Application(props) {
     bookInterview,
     cancelInterview,
   } = useApplicationData();
-
-  //   function resetDatabase() {
-  //   axios.get("/api/debug/reset").then(res => {console.log(res)})
-  // }
-  // resetDatabase();
 
   const interviewers = getInterviewersForDay(state, state.day);
 
