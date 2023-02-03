@@ -44,6 +44,7 @@ export default function useControlledInput(initial) {
     try {
       const response = await axios.put(`/api/appointments/${id}`, { interview });
       setState({ ...state, appointments });
+      // setDay;
     } catch (error) {
       console.log('There was an error!', error);
       return error;

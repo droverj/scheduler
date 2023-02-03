@@ -15,20 +15,42 @@
     &:hover {
       background-color: #ee5253;
       cursor: pointer;
+      display: flex;
       color: $dark-background;
+      flex-direction: column;
+      justify-content: center;
     }
 
     &--selected {
       background-color: darken($white, 5%);
       color: $dark-background;
+      padding-left: 2rem;
+      height: 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
       &:hover {
         background-color: darken($white, 5%);
+        padding-left: 2rem;
+        display: flex;
+        height: 5rem;
+        flex-direction: column;
+        justify-content: center;
+
       }
     }
 
-    // &--full {
-    //   opacity: $inactive-opacity;
-    // }
+    &--full {
+      background-color: darken($dark-background, 5%);
+      opacity: 50%;
+      color: grey;
+      padding-left: 2rem;
+      display: flex;
+      height: 5rem;
+      flex-direction: column;
+      justify-content: center;
+
+    }
   }
 }
