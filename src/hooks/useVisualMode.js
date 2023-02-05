@@ -4,13 +4,21 @@ export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
-  function transition(mode, replace = false) {
-    setHistory([...history, mode])
-    setMode(mode);
+  console.log("starting history: ", history);
 
-    if (replace === true) {
-      setHistory(prev => ([...prev, mode]));
+  // if there is an error saving we would want to replace
+  // the Status view with the Error view
+  function transition(nextMode, replace = false) {
+    console.log("next mode: ", nextMode);
+
+    if (replace) {
+      console.log("REPLACE IS TRUE");
+      // setHistory(prev => ([...prev, nextMode]));
+      // console.log("history after removal: ", history)
+      // setHistory(prev => ([...prev, nextMode]));
     }
+    // setHistory(prev => ([...prev, nextMode]));
+    setMode(nextMode);
   }
 
   function back() {

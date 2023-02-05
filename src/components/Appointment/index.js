@@ -35,20 +35,20 @@ export default function Appointment(props) {
 
     props
       .bookInterview(props.id, interview)
-      .then(() => {
-        transition(SHOW);
+      .then(() => transition(SHOW))
+      .catch(() => {
+        console.log("ERROR AFTER SAVING")
+        transition(ERROR_SAVE, true);
       })
-      .catch(error => transition(ERROR_SAVE, true));
-  }
+}
 
   function onConfirm() {
     transition(DELETING, true);
     props
       .cancelInterview(props.id)
-      .then(() => {
-        transition(EMPTY)
-      })
-      .catch(error => transition(ERROR_DELETE, true));
+      .then(() => transition(EMPTY)
+      )
+      .catch(() => transition(ERROR_DELETE, true));
   }
 
   return (
@@ -57,8 +57,7 @@ export default function Appointment(props) {
       {mode === EMPTY && <Empty onAdd={(e) => e = transition(CREATE)} />}
       {mode === SHOW && (
         <Show
-          student={props.interview.student}
-          interviewer={props.interview.interviewer}
+          interview={props.interview}
           onDelete={e => transition(CONFIRM)}
           onEdit={e => transition(EDIT)}
         />
@@ -97,3 +96,4 @@ export default function Appointment(props) {
     </article>
   );
 }
+
