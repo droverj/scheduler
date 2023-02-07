@@ -9,16 +9,17 @@ export default function useVisualMode(initial) {
   // if there is an error saving we would want to replace
   // the Status view with the Error view
   function transition(nextMode, replace = false) {
-    console.log("next mode: ", nextMode);
-
-    if (replace) {
-      console.log("REPLACE IS TRUE");
-      // setHistory(prev => ([...prev, nextMode]));
-      // console.log("history after removal: ", history)
-      // setHistory(prev => ([...prev, nextMode]));
-    }
-    // setHistory(prev => ([...prev, nextMode]));
-    setMode(nextMode);
+    if(replace){
+      // WHY IS IT GOING TO SHOW INSTEAD OF CATCHING THE TRUE
+      console.log("REPLACING")
+      setHistory(prev => prev.splice(2, 1, nextMode));
+      console.log("history after splice: ", history)
+      setHistory(prev => [...prev, nextMode]);
+      console.log("final history for replace = true: ", history)
+      }else{
+        setHistory(prev => [...prev, nextMode]); 
+      }
+      setMode(nextMode);
   }
 
   function back() {

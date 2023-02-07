@@ -61,15 +61,17 @@ export default function useControlledInput(initial) {
       [id]: appointment
     };
 
-    const days = updateSpots(id);
-
-    try {
-      await axios.put(`/api/appointments/${id}`, { interview });
-      setState({ ...state, appointments, days });
-    } catch (error) {
-      console.log('There was an error!', error);
-      return error;
-    }
+    await axios.put(`/api/appointments/${id}`, { interview })
+      .then(() => {
+        const days = updateSpots(id);
+        console.log("UPDATE DAYS CALLED FOR BOOKING")
+        setState({ ...state, appointments, days })
+        console.log("STATE SET FOR BOOKING")
+      })
+      .catch((error) => {
+        console.log('There was an error!', error);
+        return error;
+      })
   }
 
   async function cancelInterview(id) {
@@ -81,16 +83,21 @@ export default function useControlledInput(initial) {
       ...state.appointments,
       [id]: appointment
     };
-    const days = updateSpots(id);
 
-    try {
-      await axios.delete(`/api/appointments/${id}`);
-      setState({ ...state, appointments, days });
-    } catch (error) {
-      console.log('There was an error!', error);
-      return error;
-    }
+    await axios.delete(`/api/appointments/${id}`)
+      .then(() => {
+        const days = updateSpots(id);
+        console.log("UPDATE SPOTS ON DELETE CALLED")
+        setState({ ...state, appointments, days });
+        console.log("STATE SET FOR DELETE");
+      })
+      .catch((error) => {
+        console.log('There was an error!', error);
+        return error;
+      })
   }
 
   return { state, setDay, bookInterview, cancelInterview }
 }
+
+// Use then/catch instead
