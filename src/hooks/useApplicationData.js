@@ -99,5 +99,3 @@ export default function useControlledInput(initial) {
 
   return { state, setDay, bookInterview, cancelInterview }
 }
-
-// Use then/catch instead

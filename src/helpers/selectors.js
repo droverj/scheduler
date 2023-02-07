@@ -40,7 +40,6 @@ export function getInterview(state, interview) {
   return result;
 }
 
-// returns an array of interviewers for that day
 export function getInterviewersForDay(state, day) {
   let result = [];
 
