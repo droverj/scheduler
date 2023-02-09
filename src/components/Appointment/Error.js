@@ -1,5 +1,10 @@
-import React from 'react';
+import React from "react";
 
+/**
+ * 
+ * @param {*} props 
+ * @returns error view upon error saving or deleting
+ */
 export default function Error(props) {
   return (
     <main className="appointment__card appointment__card--error">

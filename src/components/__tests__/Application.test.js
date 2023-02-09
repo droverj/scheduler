@@ -11,12 +11,10 @@ import {
   fireEvent,
   getAllByTestId,
 } from "@testing-library/react";
-
 import axios from "axios";
 import Application from "components/Application";
 
 jest.mock("axios");
-
 afterEach(cleanup);
 /**
  * jest testing

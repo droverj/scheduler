@@ -1,24 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import InterviewerList from "../InterviewerList";
+import Button from "../Button";
 
-import InterviewerList from '../InterviewerList';
-import Button from '../Button';
-
+/**
+ * 
+ * @param {*} props 
+ * @returns form view for saving and editing appointments
+ */
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
+  /**
+   * Resets the form values
+   */
   function reset() {
     setStudent("");
     setInterviewer(null);
   }
 
+  /**
+   * Resets the form values and transitions back
+   */
   function cancel() {
     reset();
-    props.onCancel()
+    props.onCancel();
   }
 
-  
+  /**
+   * Verifies the form requirements are met and returns an error otherwise
+   */
   function validate() {
     if (student === "") {
       setError("Student name cannot be blank");
@@ -28,7 +40,6 @@ export default function Form(props) {
       setError("Please select an interviewer");
       return;
     }
-
     setError("");
     props.onSave(student, interviewer);
   }
@@ -36,14 +47,14 @@ export default function Form(props) {
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form onSubmit={event => event.preventDefault()} autoComplete="off">
+        <form onSubmit={(event) => event.preventDefault()} autoComplete="off">
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
             placeholder="Enter Student Name"
             value={student}
-            onChange={e => setStudent(e.target.value)}
+            onChange={(e) => setStudent(e.target.value)}
             data-testid="student-name-input"
           />
         </form>
@@ -56,10 +67,14 @@ export default function Form(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={e => cancel()}>Cancel</Button>
-          <Button confirm onClick={e => validate()}>Save</Button>
+          <Button danger onClick={(e) => cancel()}>
+            Cancel
+          </Button>
+          <Button confirm onClick={(e) => validate()}>
+            Save
+          </Button>
         </section>
       </section>
     </main>
-  )
+  );
 }

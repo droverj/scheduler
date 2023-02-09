@@ -1,5 +1,10 @@
-import React from 'react';
+import React from "react";
 
+/**
+ * 
+ * @param {*} props 
+ * @returns empty view for available appointment spots
+ */
 export default function Empty(props) {
   return (
     <main className="appointment__add">
@@ -10,5 +15,5 @@ export default function Empty(props) {
         onClick={props.onAdd}
       />
     </main>
-  )
+  );
 }
