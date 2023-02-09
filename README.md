@@ -21,3 +21,6 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## App Preview
+!["App-Preview"](https://github.com/droverj/scheduler/blob/master/docs/app-preview.png?raw=true)
