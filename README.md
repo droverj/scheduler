@@ -9,6 +9,10 @@ The front end of the project is built with React and makes requests to an API wi
 
 Install dependencies with `npm install`.
 
+## API Setup
+Fork and clone ["scheduler-api"](https://github.com/lighthouse-labs/scheduler-api) into a new directory.
+
+
 ## Running Webpack Development Server
 
 ```sh
