@@ -6,7 +6,7 @@ import "components/InterviewerList.scss";
 /**
  *
  * @param {*} props
- * @returns the list of interviewer list items
+ * @returns the list of interviewer items
  */
 export default function InterviewerList(props) {
   const interviewers = props.interviewers;

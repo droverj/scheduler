@@ -5,7 +5,7 @@ import "components/InterviewerListItem.scss";
 /**
  *
  * @param {*} props
- * @returns each individual interviewer list item
+ * @returns each individual interviewer item
  */
 export default function InterviewerListItem(props) {
   const classNamesObject = classNames("interviewers__item", {
