@@ -1,10 +1,13 @@
 import React from "react";
-import classNames from 'classnames';
+import classNames from "classnames";
+import "components/InterviewerListItem.scss";
 
-import 'components/InterviewerListItem.scss';
-
+/**
+ *
+ * @param {*} props
+ * @returns each individual interviewer list item
+ */
 export default function InterviewerListItem(props) {
-
   const classNamesObject = classNames("interviewers__item", {
     "--selected": props.selected,
   });
@@ -22,4 +25,3 @@ export default function InterviewerListItem(props) {
     </li>
   );
 }
-
