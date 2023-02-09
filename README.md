@@ -18,6 +18,9 @@ Follow the README.md instructions in the repository, including:
 - seeding the database
 - running the server
 
+## Note:
+The client runs on port 8000, and the API server runs on port 8001.
+
 ## Running Webpack Development Server
 
 ```sh
