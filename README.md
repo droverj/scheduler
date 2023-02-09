@@ -1,5 +1,10 @@
 # Interview Scheduler
 
+## Summary
+Interview Scheduler is a single-page application (SPA). This app is designed to allow students to book technical interviews with mentors between 12 PM and 5 PM, Monday to Friday. After an interview has been booked, the user then has the option to either edit or delete the appointment. Users may select any day of the week to view the current schedule for that day.
+
+The front end of the project is built with React and makes requests to an API with a WebSocket server to build a real-time experience.
+
 ## Setup
 
 Install dependencies with `npm install`.
