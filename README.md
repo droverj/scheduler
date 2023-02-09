@@ -35,6 +35,13 @@ npm test
 ```sh
 npm run storybook
 ```
+## Dependencies
+- axios ^0.20.0
+- classnames ^2.2.6
+- normalize.css ^8.0.1
+- react ^16.9.0
+- react-dom ^16.9.0
+- react-scripts 3.4.4
 
 ## App Preview
 !["App-Preview"](https://github.com/droverj/scheduler/blob/master/docs/app-preview.png?raw=true)
