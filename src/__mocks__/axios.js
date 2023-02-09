@@ -1,3 +1,7 @@
+
+/**
+ * mock data for axios calls
+ */
 const fixtures = {
   days: [
     {

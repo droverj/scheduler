@@ -13,8 +13,8 @@ describe("Form", () => {
     {
       id: 1,
       name: "Sylvia Palmer",
-      avatar: "https://i.imgur.com/LpaY82x.png"
-    }
+      avatar: "https://i.imgur.com/LpaY82x.png",
+    },
   ];
 
   it("renders without student name if not provided", () => {
@@ -36,9 +36,7 @@ describe("Form", () => {
     const { getByText } = render(
       <Form interviewers={interviewers} onSave={onSave} />
     );
-
     fireEvent.click(getByText("Save"));
-
     expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
     expect(onSave).not.toHaveBeenCalled();
   });
@@ -48,20 +46,14 @@ describe("Form", () => {
     const { getByText, getByPlaceholderText, queryByText } = render(
       <Form interviewers={interviewers} onSave={onSave} interviewer={1} />
     );
-
     fireEvent.click(getByText("Save"));
-
     expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
     expect(onSave).not.toHaveBeenCalled();
-
     fireEvent.change(getByPlaceholderText("Enter Student Name"), {
-      target: { value: "Lydia Miller-Jones" }
+      target: { value: "Lydia Miller-Jones" },
     });
-
     fireEvent.click(getByText("Save"));
-
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
-
     expect(onSave).toHaveBeenCalledTimes(1);
     expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", 1);
   });
@@ -76,19 +68,13 @@ describe("Form", () => {
         onCancel={onCancel}
       />
     );
-
     fireEvent.click(getByText("Save"));
-
     fireEvent.change(getByPlaceholderText("Enter Student Name"), {
-      target: { value: "Lydia Miller-Jones" }
+      target: { value: "Lydia Miller-Jones" },
     });
-
     fireEvent.click(getByText("Cancel"));
-
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
-
     expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");
-
     expect(onCancel).toHaveBeenCalledTimes(1);
   });
 });
