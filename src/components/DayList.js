@@ -1,7 +1,11 @@
 import React from "react";
-
 import DayListItem from './DayListItem';
 
+/**
+ * 
+ * @param {*} props 
+ * @returns the list of day list items
+ */
 export default function DayList (props) {
   const days = props.days;
 
