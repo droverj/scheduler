@@ -57,7 +57,7 @@ The user can fill out a form to book an interview.
 !["Form-Preview"](https://github.com/droverj/scheduler/blob/master/docs/form.png?raw=true)
 
 Saved entries can then be edited or deleted.
-!["Edit-form"](https://github.com/droverj/scheduler/blob/master/docs/edit.png?raw=true)
+!["Edit-form"](https://github.com/droverj/scheduler/blob/master/docs/show.png?raw=true)
 
 Users are prompted with a confirmation message prior to deleting their appointment.
 !["Delete-confirmation"](https://github.com/droverj/scheduler/blob/master/docs/confirmation.png?raw=true)
