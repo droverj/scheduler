@@ -40,6 +40,10 @@ export default function Appointment(props) {
    * If error, transition to ERROR_SAVE mode to display the error.
    */
   function save(name, interviewer) {
+    let edit = false;
+    if (mode === "EDIT") {
+      edit = true;
+    }
     const interview = {
       student: name,
       interviewer,
@@ -48,7 +52,7 @@ export default function Appointment(props) {
     transition(SAVING);
 
     props
-      .bookInterview(props.id, interview)
+      .bookInterview(props.id, interview, edit)
       .then(() => transition(SHOW))
       .catch(() => {
         transition(ERROR_SAVE, true);

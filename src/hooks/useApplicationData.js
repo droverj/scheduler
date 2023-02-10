@@ -34,7 +34,11 @@ export default function useApplicationData() {
    * @param {*} appointmentId
    * @returns a day array with the updated state after an interview has been booked or cancelled
    */
-  function updateSpots(appointmentId) {
+  function updateSpots(appointmentId, edit) {
+    if (edit) {
+      return [...state.days];
+    }
+
     const interview = state.appointments[appointmentId].interview;
     const currentDay = state.days.filter((day) => day.name === state.day);
     const dayId = currentDay[0].id;
@@ -67,7 +71,7 @@ export default function useApplicationData() {
    * If successful, captures the days array using the updateSpots function
    * Updates the state with the new appointments object and returned days array
    */
-  async function bookInterview(id, interview) {
+  async function bookInterview(id, interview, edit) {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -81,7 +85,7 @@ export default function useApplicationData() {
     await axios
       .put(`/api/appointments/${id}`, { interview })
       .then(() => {
-        const days = updateSpots(id);
+        const days = updateSpots(id, edit);
         setState({ ...state, appointments, days });
       })
       .catch((error) => {
