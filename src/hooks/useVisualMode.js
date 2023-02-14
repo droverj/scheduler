@@ -18,24 +18,24 @@ export default function useVisualMode(initial) {
    */
   function transition(nextMode, replace = false) {
     if (replace) {
-      setHistory((prev) => prev.splice(2, 1, nextMode));
+      const last = [...history];
+      last.pop();
+      last.pop();
+      setHistory(prev => [...last, nextMode]);
+      setMode(nextMode);
     } else {
-      setHistory((prev) => [...prev, nextMode]);
+      setHistory(prev => [...prev, nextMode]);
+      setMode(nextMode);
     }
-    setMode(nextMode);
   }
 
   /**
    * Returns the user to the previous mode
    */
   function back() {
-    if (history.length <= 1) {
-      setMode(initial);
-    }
     if (history.length > 1) {
-      history.pop();
-      const last = history.pop();
-      setMode(last);
+      setMode(history[history.length - 2]);
+      setHistory((prev) => prev.slice(0, prev.length - 1));
     }
   }
   return { mode, transition, back };

@@ -71,7 +71,7 @@ export default function useApplicationData() {
    * If successful, captures the days array using the updateSpots function
    * Updates the state with the new appointments object and returned days array
    */
-  async function bookInterview(id, interview, edit) {
+  function bookInterview(id, interview, edit) {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -82,7 +82,7 @@ export default function useApplicationData() {
       [id]: appointment,
     };
 
-    await axios
+    return axios
       .put(`/api/appointments/${id}`, { interview })
       .then(() => {
         const days = updateSpots(id, edit);
@@ -102,7 +102,7 @@ export default function useApplicationData() {
    * If successful, updates the spots remaining using the updateSpots function
    * Updates the state using the copy and the returned days array
    */
-  async function cancelInterview(id) {
+  function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
       interview: null,
@@ -111,8 +111,7 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment,
     };
-
-    await axios
+    return axios
       .delete(`/api/appointments/${id}`)
       .then(() => {
         const days = updateSpots(id);
