@@ -5,7 +5,9 @@ import "components/InterviewerList.scss";
 
 /**
  *
- * @param {*} props
+ * @param {Array} props: array of objects containing interviewers (5)
+ * @param {Null/Number} props: value of interviewer's ID if selected, else null
+ * @param {Function} props: onChange
  * @returns the list of interviewer items
  */
 export default function InterviewerList(props) {

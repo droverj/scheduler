@@ -4,7 +4,10 @@ import "components/DayListItem.scss";
 
 /**
  *
- * @param {*} props
+ * @param {String} props: name of the day
+ * @param {Number} props: number of spots available for the day
+ * @param {Boolean} props: currently selected day
+ * @param {Function} props: setDay
  * @returns each individual day list item
  */
 export default function DayListItem(props) {

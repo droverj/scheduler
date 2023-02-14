@@ -3,7 +3,9 @@ import DayListItem from './DayListItem';
 
 /**
  * 
- * @param {*} props 
+ * @param {Array} props: array of days objects (5)
+ * @param {String} props: value for selected day 
+ * @param {Function} props: onChange
  * @returns the list of day list items
  */
 export default function DayList (props) {

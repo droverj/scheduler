@@ -4,7 +4,10 @@ import "components/InterviewerListItem.scss";
 
 /**
  *
- * @param {*} props
+ * @param {String} props: interviewer's name
+ * @param {String} props: interviewer's avatar
+ * @param {Boolean} props: interviewer is selected
+ * @param {Function} props: setInterviewer
  * @returns each individual interviewer item
  */
 export default function InterviewerListItem(props) {
