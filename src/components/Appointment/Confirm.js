@@ -3,8 +3,10 @@ import Button from "../Button";
 
 /**
  * 
- * @param {*} props 
- * @returns confirm view before cancellation
+ * @param {String} props: message
+ * @param {Function} props: onCancel
+ * @param {Function} props: onConfirm
+ * @returns a confirm view before cancellation
  */
 export default function Confirm(props) {
   return (

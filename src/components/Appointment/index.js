@@ -22,7 +22,12 @@ const ERROR_DELETE = "ERROR_DELETE";
 
 /**
  *
- * @param {*} props
+ * @param {Number} props: appointment Id
+ * @param {Object/Null} props: interview
+ * @param {Array} props: an array of interviewers objects (5)
+ * @param {String} props: time for each appointment
+ * @param {Function} props: bookInterview
+ * @param {Function} props: cancelInterview
  * @returns a view determined by the mode from the useVisualMode custom hook
  */
 export default function Appointment(props) {
@@ -32,12 +37,11 @@ export default function Appointment(props) {
 
   /**
    *
-   * @param {*} name - student name
-   * @param {*} interviewer - selected interviewer
-   * Captures the student name and interviewer.
-   * Transitions to STATUS mode for SAVING.
+   * Captures the student name and interviewer before transitioning to STATUS mode for SAVING.
    * Books the interview using the captured values and transitions to SHOW mode.
-   * If error, transition to ERROR_SAVE mode to display the error.
+   * If there is an error, transitions to ERROR_SAVE mode to display the error.
+   * @param {string} name - student's name
+   * @param {number} interviewer - interviewer's Id
    */
   function save(name, interviewer) {
     let edit = false;
@@ -58,9 +62,8 @@ export default function Appointment(props) {
   }
 
   /**
-   * Transitions to STATUS mode for DELETING.
-   * Cancels the interview and transitions to EMPTY mode.
-   * If error, transition to ERROR_DELETE mode to display the error.
+   * Transitions to STATUS mode for DELETING before cancelling the interview and transitioning to EMPTY mode.
+   * If there is an error, transitions to ERROR_DELETE mode to display the error.
    */
   function onConfirm() {
     transition(DELETING, true);

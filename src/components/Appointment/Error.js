@@ -2,8 +2,9 @@ import React from "react";
 
 /**
  * 
- * @param {*} props 
- * @returns error view upon error saving or deleting
+ * @param {String} props: message
+ * @param {Function} props: onClose
+ * @returns an error view upon error saving or deleting
  */
 export default function Error(props) {
   return (

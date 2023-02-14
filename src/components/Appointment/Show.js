@@ -2,7 +2,9 @@ import React from "react";
 
 /**
  * 
- * @param {*} props 
+ * @param {Object} props: interview object containing interviewer object (id, name, avatar) and student name
+ * @param {Function} props: onDelete
+ * @param {Function} props: onEdit
  * @returns a view for an appointment after it has successfully saved
  */
 export default function Show(props) {

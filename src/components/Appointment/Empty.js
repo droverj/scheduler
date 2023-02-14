@@ -2,8 +2,8 @@ import React from "react";
 
 /**
  * 
- * @param {*} props 
- * @returns empty view for available appointment spots
+ * @param {Function} props: onAdd
+ * @returns an empty view for available appointment spots
  */
 export default function Empty(props) {
   return (

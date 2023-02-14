@@ -1,7 +1,8 @@
 import React from "react";
 
 /**
- * Returns a header for each appointment
+ * @param {String} props: time
+ * @returns a header for each appointment
  */
 export default function Header(props) {
   return (

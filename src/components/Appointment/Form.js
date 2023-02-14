@@ -4,8 +4,10 @@ import Button from "../Button";
 
 /**
  * 
- * @param {*} props 
- * @returns form view for saving and editing appointments
+ * @param {Array} props: an array of interviewers objects (5)
+ * @param {Function} props: onCancel
+ * @param {Function} props: onSave
+ * @returns the form view for saving and editing appointments
  */
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");

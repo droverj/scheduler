@@ -2,7 +2,7 @@ import React from "react";
 
 /**
  * 
- * @param {*} props 
+ * @param {String} props: message 
  * @returns a transitioning view with a saving or deleting message and icon
  */
 export default function Status(props) {
