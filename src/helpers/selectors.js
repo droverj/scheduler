@@ -1,39 +1,34 @@
 /**
- *
- * @param {*} state
- * @param {*} day
- * @returns an array of appointments for the selected day
+ * Returns an array of appointment objects depending on the currently selected day
+ * @param {Object} state: current state for the selected day
+ * @param {String} name: name of currently selected day
+ * @returns {Array} an array of objects containing appointment details for the selected day
  */
 export function getAppointmentsForDay(state, day) {
   let result = [];
 
-  const appointments = state.days.filter(
-    (appointment) => appointment.name === day
+  // returns an array containing an object for the selected day's state
+  const getAppointment = state.days.filter(
+    appointment => appointment.name === day
   );
 
-  if (!appointments.length || !state.days.length) {
+  if (!state.days || !getAppointment.length) {
     return result;
   }
 
-  const interviewerIds = appointments[0].appointments;
-  const appointment = Object.values(state.appointments);
+  const appointment = getAppointment[0];
 
-  result = interviewerIds.map((i) => {
-    for (const id of appointment) {
-      if (i === id.id) {
-        return id;
-      }
-    }
-  });
-
+  // loops through the appointments array (ids) for the selected day
+  for (const id of appointment.appointments) {
+    result.push(state.appointments[id])
+  }
   return result;
 }
 
 /**
- *
- * @param {*} state
- * @param {*} interview
- * @returns an object containing the interview data when from an object that contains the interviewer value
+ * @param {Object} state: current state for the selected day
+ * @param {Null/Object} interview: an object containing the student's name and interviewer's id if an appointment is scheduled, else null
+ * @returns {Object} an object containing the interview data when from an object that contains the interviewer value
  */
 export function getInterview(state, interview) {
   const result = {};
@@ -53,31 +48,28 @@ export function getInterview(state, interview) {
 }
 
 /**
- *
- * @param {*} state
- * @param {*} day
- * @returns a list of interviewers for the selected day
+ * Returns an array of interviewer objects depending on the currently selected day
+ * @param {Object} state: current state for the selected day
+ * @param {String} name: name of currently selected day
+ * @returns {Array} an array of objects containing the interviewers for the selected day
  */
 export function getInterviewersForDay(state, day) {
   let result = [];
 
-  const appointments = state.days.filter(
-    (appointment) => appointment.name === day
+  // returns an array containing an object for the selected day's state
+  const getAppointment = state.days.filter(
+    appointment => appointment.name === day
   );
 
-  if (!appointments.length || !state.days.length) {
+  if (!state.days || !getAppointment.length) {
     return result;
   }
 
-  const interviewerIds = appointments[0].interviewers;
-  const interviewers = Object.values(state.interviewers);
+  const appointment = getAppointment[0];
 
-  result = interviewerIds.map((i) => {
-    for (const id of interviewers) {
-      if (i === id.id) {
-        return id;
-      }
-    }
-  });
+  // loops through the interviewers array (ids) for the selected day
+  for (const id of appointment.interviewers) {
+    result.push(state.interviewers[id])
+  }
   return result;
 }
