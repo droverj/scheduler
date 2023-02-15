@@ -31,7 +31,8 @@ export default function useApplicationData() {
 
   /**
    *
-   * @param {*} appointmentId
+   * @param {Number} appointmentId: appointment ID
+   * @param {Boolean} edit: Captures a value of true, defaults as false -- used for updateSpots function
    * @returns a day array with the updated state after an interview has been booked or cancelled
    */
   function updateSpots(appointmentId, edit) {
@@ -50,26 +51,26 @@ export default function useApplicationData() {
       spots += 1;
     }
 
-    const day = {
+    const newDay = {
       ...state.days[dayId - 1],
       spots: spots,
     };
 
     const days = [...state.days];
-
-    days[0] = day;
+    days[dayId - 1] = newDay;
     return days;
   }
 
   /**
    *
-   * @param {*} id
-   * @param {*} interview
    * Captures the appointment id and interview for selected appointment
    * Creates a copy of the appointment's state and adds the interview
    * Makes an axios call to put the appointment into the API
    * If successful, captures the days array using the updateSpots function
    * Updates the state with the new appointments object and returned days array
+   * @param {Number} id: appointment ID
+   * @param {Object} interview: interview object containing student name and interviewer ID
+   * @param {Boolean} edit: Captures a value of true, defaults as false -- used for updateSpots function
    */
   function bookInterview(id, interview, edit) {
     const appointment = {
@@ -95,12 +96,12 @@ export default function useApplicationData() {
 
   /**
    *
-   * @param {*} id
-   * Captures the appointment Id
+   * Captures the appointment ID
    * Creates a copy of the appointments state and sets the interview to null
    * Makes an axios delete request
    * If successful, updates the spots remaining using the updateSpots function
    * Updates the state using the copy and the returned days array
+   * @param {Number} id: appointment ID
    */
   function cancelInterview(id) {
     const appointment = {

@@ -20,7 +20,7 @@ export default function Application() {
   const interviewers = getInterviewersForDay(state, state.day);
 
   const appointments = getAppointmentsForDay(state, state.day).map(
-    (appointment) => {
+    appointment => {
       return (
         <Appointment
           key={appointment.id}

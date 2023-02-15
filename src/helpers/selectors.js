@@ -12,7 +12,7 @@ export function getAppointmentsForDay(state, day) {
     appointment => appointment.name === day
   );
 
-  if (!state.days || !getAppointment.length) {
+  if (!state.days|| !getAppointment.length) {
     return result;
   }
 
