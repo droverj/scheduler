@@ -18,13 +18,15 @@ export default function useVisualMode(initial) {
    */
   function transition(nextMode, replace = false) {
     if (replace) {
-      const last = [...history];
-      last.pop();
-      last.pop();
-      setHistory(prev => [...last, nextMode]);
+      setHistory((prev) => {
+        const last = [...prev];
+        last.pop();
+        last.pop();
+        return [...last, nextMode];
+      });
       setMode(nextMode);
     } else {
-      setHistory(prev => [...prev, nextMode]);
+      setHistory((prev) => [...prev, nextMode]);
       setMode(nextMode);
     }
   }
