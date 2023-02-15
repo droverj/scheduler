@@ -89,9 +89,6 @@ export default function useApplicationData() {
         const days = updateSpots(id, edit);
         setState({ ...state, appointments, days });
       })
-      .catch((error) => {
-        return error;
-      });
   }
 
   /**
@@ -118,9 +115,6 @@ export default function useApplicationData() {
         const days = updateSpots(id);
         setState({ ...state, appointments, days });
       })
-      .catch((error) => {
-        return error;
-      });
   }
 
   return { state, setDay, bookInterview, cancelInterview };

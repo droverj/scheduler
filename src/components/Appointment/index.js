@@ -52,10 +52,10 @@ export default function Appointment(props) {
       student: name,
       interviewer,
     };
-
+    
     transition(SAVING);
-
-    props
+    
+  props
       .bookInterview(props.id, interview, edit)
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
