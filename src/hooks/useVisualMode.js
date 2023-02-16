@@ -18,12 +18,9 @@ export default function useVisualMode(initial) {
    */
   function transition(nextMode, replace = false) {
     if (replace) {
-      console.log("replace is true")
       setHistory((prev) => {
         const last = [...prev];
-        console.log(last)
         last.pop();
-        console.log(last)
         return [...last, nextMode];
       });
       setMode(nextMode);
